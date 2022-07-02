@@ -2,7 +2,7 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Platform;
 use Illuminate\Database\Seeder;
 
 class PlatformSeeder extends Seeder
@@ -14,6 +14,12 @@ class PlatformSeeder extends Seeder
      */
     public function run()
     {
-        //
+        Platform::create([
+            'name' => 'Youtube',
+        ]);
+
+        Platform::create([
+            'name' => 'Vimeo',
+        ]);
     }
 }

@@ -2,8 +2,11 @@
 
 namespace Database\Seeders;
 
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
+use App\Models\Course;
+use App\Models\Platform;
+use App\Models\Price;
 use Illuminate\Database\Seeder;
+use Illuminate\Support\Facades\Storage;
 
 class DatabaseSeeder extends Seeder
 {
@@ -14,11 +17,18 @@ class DatabaseSeeder extends Seeder
      */
     public function run()
     {
+        Storage::deleteDirectory('courses');
+        Storage::makeDirectory('courses');
         // \App\Models\User::factory(10)->create();
 
-        // \App\Models\User::factory()->create([
-        //     'name' => 'Test User',
-        //     'email' => 'test@example.com',
-        // ]);
+        $this->call(PermissionSeeder::class);
+        $this->call(RoleSeeder::class);
+        $this->call(UserSeeder::class);
+        $this->call(LevelSeeder::class);
+        $this->call(CategorySeeder::class);
+        $this->call(PriceSeeder::class);
+        $this->call(PlatformSeeder::class);
+        $this->call(CourseSeeder::class);
+        
     }
 }
