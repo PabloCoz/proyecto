@@ -8,6 +8,14 @@ use Illuminate\Database\Eloquent\Model;
 class Lesson extends Model
 {
     use HasFactory;
+
+    protected $guarded = ['id'];
+
+    public function getCompletedAttribute()
+    {
+        return $this->users->contains(auth()->user()->id);
+    }
+
     public function module()
     {
         return $this->belongsTo(Module::class);

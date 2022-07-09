@@ -12,6 +12,23 @@ class Course extends Model
     const ELABORACION = 1;
     const REVISIÓN = 2;
     const PUBLICADO = 3;
+    protected $guarded = ['id', 'status'];
+
+    protected $withCount = ['students', 'reviews'];
+
+    public function getRatingAttribute()
+    {
+        if ($this->reviews_count) {
+            return round($this->reviews->avg('rating'), 1);
+        } else {
+            return 0;
+        }
+    }
+
+    public function getRouteKeyName()
+    {
+        return "slug";
+    }
 
     public function teacher()
     {

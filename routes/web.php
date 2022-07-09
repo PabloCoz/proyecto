@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CourseController;
 use App\Http\Controllers\HomeController;
+use App\Http\Livewire\CoursesStatus;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,3 +19,7 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', HomeController::class)->name('welcome');
 
 Route::resource('/courses', CourseController::class)->names('courses');
+
+Route::post('courses/{course}/enrolled',[CourseController::class, 'enrolled'])->middleware('auth')->name('courses.enrolled');
+
+Route::get('courses-status/{course}', CoursesStatus::class)->name('courses.status')->middleware('auth');

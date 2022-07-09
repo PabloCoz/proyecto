@@ -1,7 +1,7 @@
 <x-app-layout>
-    <div class="container mx-auto">
+    <div class="container">
 
-        <section class="bg-gray-900 mb-10">
+        <section class="bg-gray-900 mb-10 rounded-lg max-w-7xl mx-auto">
             <div class="container py-12 grid grid-cols-1 lg:grid-cols-2 gap-6">
                 <figure>
                     <img class="h-72 w-full object-cover rounded select-none ml-5" src="{{ asset('img/foto.jpg') }}"
@@ -124,14 +124,14 @@
                         @else
                             @if ($course->price->value == 0)
                                 <p class="text-2xl font-bold text-gray-500 mt-3 mb-2">GRATIS</p>
-                                {{-- <form action="" method="POST">
-                                    @csrf --}}
-                                <button class="bg-red-600 p-2 w-full text-white font-bold text-center rounded block"
-                                    type="submit">Llevar curso</button>
-                                {{-- </form> --}}
+                                <form action="{{ route('courses.enrolled', $course) }}" method="POST">
+                                    @csrf
+                                    <button class="bg-red-600 p-2 w-full text-white font-bold text-center rounded block"
+                                        type="submit">Llevar curso</button>
+                                </form>
                             @else
                                 <p class="text-2xl font-bold text-gray-500 mt-3 mb-2">US$ {{ $course->price->value }}</p>
-                                <a href=""
+                                <a href="{{ route('courses.enrolled', $course) }}"
                                     class="bg-red-600 p-2 w-full text-white font-bold text-center rounded block">Comprar
                                     este curso</a>
                             @endif
